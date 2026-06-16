@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_圖層_2" data-name="圖層 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 523.1 263.34">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #2b2b2b;
+      }
+
+      .cls-2 {
+        fill: #1b1b1b;
+      }
+    </style>
+  </defs>
+  <g id="_圖層_2-2" data-name="圖層 2">
+    <g>
+      <g>
+        <path class="cls-2" d="M395.86-33.06h94.17v126.28c0,18.77-15.24,34.02-34.02,34.02h-60.16V-33.06h0Z" transform="translate(395.86 490.03) rotate(-90)"/>
+        <path class="cls-2" d="M395.86,136.1h94.17v160.3h-60.16c-18.77,0-34.02-15.24-34.02-34.02v-126.28h0Z" transform="translate(226.7 659.2) rotate(-90)"/>
+        <polygon class="cls-1" points="268.72 169.17 362.89 263.34 362.89 0 269.68 94.17 268.72 169.17"/>
+      </g>
+      <g>
+        <path class="cls-2" d="M78.32,100.72h60.16c18.77,0,34.02,15.24,34.02,34.02v128.6h-94.17V100.72h0Z" transform="translate(250.81 364.05) rotate(180)"/>
+        <polygon class="cls-1" points="211.09 6.02 78.32 100.72 211.09 100.72 247.9 100.72 247.9 6.02 211.09 6.02"/>
+        <path class="cls-2" d="M0,0h36.33C61.36,0,81.68,20.32,81.68,45.35v36.33h-36.33C20.32,81.68,0,61.36,0,36.33V0H0Z"/>
+      </g>
+      <rect class="cls-2" x="215.22" y="230.66" width="32.68" height="32.68" rx="14.17" ry="14.17"/>
+    </g>
+  </g>
+</svg>
