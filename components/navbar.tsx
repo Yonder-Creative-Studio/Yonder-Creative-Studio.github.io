@@ -52,7 +52,7 @@ export function Navbar() {
           <div className="h-full flex items-center justify-start">
             <Link href="/">
               <Image
-                src="/logo.svg"
+                src="logo/logo.svg"
                 alt="Logo"
                 width={35}
                 height={35}
@@ -83,6 +83,9 @@ export function Navbar() {
                 <HoveredLink href="https://google.com">Team</HoveredLink>
                 <HoveredLink href="https://google.com">Enterprise</HoveredLink>
               </div>
+            </MenuItem>
+
+            <MenuItem setActive={setActive} active={null} item="成員" href="/member">
             </MenuItem>
 
             <MenuItem setActive={setActive} active={null} item="聯絡我們" href="/contact">
