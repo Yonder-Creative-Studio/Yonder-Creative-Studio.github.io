@@ -32,11 +32,11 @@ const items = [
 export default function Footer() {
  
   return (
-    <div className="w-full h-full bg-[#2b2b38] text-gray-400 px-12 py-8 flex flex-col items-center justify-center gap-12">
+    <div className="w-full h-full bg-[#2b2b38] text-gray-400 px-12 py-12 flex flex-col items-center justify-center gap-12">
 
       {/* information */}
-      <div className="w-full h-full flex items-start justify-center gap-24 mx-auto">
-        <div className="w-1/2 h-full flex flex-col">
+      <div className="w-full h-full flex flex-col md:flex-row items-start justify-center gap-12 md:gap-24 mx-auto">
+        <div className="w-full md:w-1/2 h-full flex flex-col justify-center items-center md:items-start">
           <strong className="text-lg mb-2">服務項目</strong>
           <Accordion
             type="single"
@@ -76,24 +76,24 @@ export default function Footer() {
         </div>
 
 
-        <div className="w-1/2 h-full flex flex-col gap-8">
-          <div className="flex flex-col gap-4">
-            <strong className="text-lg -mb-1">聯絡資訊</strong>
-            <div className="flex items-center gap-4">
+        <div className="w-full md:w-1/2 h-full flex flex-col justify-center items-center gap-8">
+          <div className="w-full flex flex-col gap-4">
+            <strong className="text-lg -mb-1 text-center md:text-left">聯絡資訊</strong>
+            <div className="flex items-center gap-4 md:gap-8">
               <MdOutlineMail />
               yondercreative@gmail.com
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 md:gap-8">
               <FiPhone />
               +886 958 543 915
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 md:gap-8">
               <FiMapPin />
               桃園市桃園區
             </div>
 
-            <div className="flex items-center gap-8 mt-4">
-              <Link href="/" className="t hover:text-white transition-all duration-600">
+            <div className="flex justify-center md:justify-start items-center gap-8 md:gap-12 mt-4">
+              <Link href="/" className="hover:text-white transition-all duration-600">
                 <FaFacebook />
               </Link>
                 <Link href="/" className="hover:text-white transition-all duration-600">

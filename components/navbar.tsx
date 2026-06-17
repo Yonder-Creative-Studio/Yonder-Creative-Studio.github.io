@@ -20,14 +20,16 @@ export function Navbar() {
 
   // 3. 監聽滾動數值的變化
   useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = lastScrollY.current;
+    const diff = latest - previous;
 
     // 情境 A：向下滾動，且滾動高度超過 40px 時隱藏
-    if (latest > 40) {
+    if (diff > 0 && latest > 40) {
       setHidden(true);
       setActive(null); // 隱藏 Navbar 時，順便把已經打開的下拉選單關閉，避免懸空
     } 
-    // 情境 B：向上滾動，且滾動高度低於 20px 時（避免太敏感），重新顯示
-    else if (latest < 20) {
+    // 情境 B：向上滾動，且向上滾動的幅度大於 5px 時，重新顯示
+    else if (diff < -5 || latest < 20) {
       setHidden(false);
     }
 
@@ -63,6 +65,9 @@ export function Navbar() {
           
           {/* navigation items */}
           <div className="w-full h-full flex items-center justify-end gap-12 mx-auto">
+            <MenuItem setActive={setActive} active={null} item="首頁" href="/">
+            </MenuItem>
+
             <MenuItem setActive={setActive} active={null} item="關於我們" href="/about">
             </MenuItem>
             

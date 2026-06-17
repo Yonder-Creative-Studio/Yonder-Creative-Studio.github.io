@@ -17,22 +17,22 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "young creative studio",
+  title: "yonder creative studio",
   description: "遙創工作室，一個專注於網頁設計與開發的創意團隊，致力於為客戶打造獨特且高效的數位體驗。",
   icons: {
     icon: "logo/logo.svg",
   },
   openGraph: {
-    title: "young creative studio",
+    title: "yonder creative studio",
     description: "遙創工作室，一個專注於網頁設計與開發的創意團隊，致力於為客戶打造獨特且高效的數位體驗。",
     url: "https://yonder-creative.vercel.app/",
-    siteName: "young creative studio",
+    siteName: "yonder creative studio",
     images: [
       {
         url: "logo/YC_黑底白字.png",
         width: 1200,
         height: 630,
-        alt: "young creative studio",
+        alt: "yonder creative studio",
       }
     ]
   },
@@ -49,10 +49,9 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="custom-scrollbar w-full min-h-full flex flex-col scroll-y-auto">
+      <body className="custom-scrollbar w-full min-h-full flex flex-col scrollbar-y-auto! scrollbar-x-none!">
         <Navbar />
         {children}
-        <Footer />
       </body>
     </html>
   );
