@@ -101,7 +101,7 @@
 
 @layer base {
   * {
-    @apply border-none outline-none;
+    @apply outline-none;
   }
   body {
     @apply bg-background text-foreground;

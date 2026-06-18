@@ -2,19 +2,21 @@
 // import { useEffect, useRef, useState } from "react";
 
 import Footer from "@/components/footer";
+import Title from "@/components/title";
 
 export default function Item() {
 
 
   return (
-     <body className="custom-scrollbar scrollbar-y-auto! scrollbar-x-none!">
-         <div className="min-h-screen bg-slate-100 flex flex-col items-center justify-center p-4">
-           
- 
- 
+     <div className="custom-scrollbar scrollbar-y-auto! scrollbar-x-none!">
+         <div className="relative min-h-screen bg-slate-100 flex flex-col items-center justify-start p-4">
+            <div className="absolute top-1/7 left-0 h-full w-full px-8">
+              <Title title="服務項目" />
+
+            </div>
          </div>
          
          <Footer />
-     </body>
+     </div>
    );
 }
