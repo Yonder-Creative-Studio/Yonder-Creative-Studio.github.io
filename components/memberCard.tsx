@@ -16,10 +16,14 @@ interface MemberProps {
 export default function Member({ name, jobTitle, education, major, specialty, href, imgSrc}: MemberProps) {
   return(
     
-    <div className="w-full h-full text-primary bg-white shadow-sm hover:-translate-y-1 hover:shadow-md rounded-md transition-all duration-600 p-4 flex gap-4 justify-center items-center">
+    <div className="w-full h-full text-primary bg-white shadow-sm hover:-translate-y-1 hover:shadow-md rounded-md transition-all duration-600 p-4 flex flex-col md:flex-row gap-1 md:gap-4 justify-center items-center">
+      <div className="md:hidden flex justify-start items-end gap-2">
+        {name && <div className="font-serif text-lg font-bold">{name} /</div>}
+        {jobTitle && <p className="text-sm opacity-80">{jobTitle}</p>}
+      </div>
 
       {imgSrc && (
-        <div className="w-full h-full aspect-9/10 relative mt-2 overflow-hidden rounded-md">
+        <div className="w-full h-full aspect-video md:aspect-9/10 relative mt-2 overflow-hidden rounded-md">
           <Image 
             src={imgSrc} 
             alt={name || "card image"} 
@@ -33,12 +37,12 @@ export default function Member({ name, jobTitle, education, major, specialty, hr
       <div className="flex flex-col items-start justify-between gap-4 w-full h-full mt-2 text-primary">
         <div className="flex flex-col gap-4 justify-between h-full">
 
-          <div className="flex justify-start items-end gap-2 border-b border-primary pb-4">
+          <div className="hidden md:flex justify-start items-end gap-2 border-b border-primary pb-4">
             {name && <div className="font-serif text-lg font-bold">{name} /</div>}
             {jobTitle && <p className="text-sm opacity-80">{jobTitle}</p>}
           </div>
           
-          <div className="flex flex-col gap-1 border border-primary/80 p-2 rounded-sm">
+          <div className="flex flex-col gap-1 md:border border-primary/80 md:p-2 rounded-sm">
             {education && <p className="text-xs opacity-80">{education}</p>}
             {major && <p className="text-xs">{major}</p>}
           </div>

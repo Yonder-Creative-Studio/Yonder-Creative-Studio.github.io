@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { Canvas, useLoader } from '@react-three/fiber';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
@@ -14,13 +14,32 @@ function Model() {
 }
 
 export default function ThreeD() {
-  // 2. 這裡不要寫 useLoader
+  // 建立一個狀態來決定目前是否為手機板（預設為 false 避免 SSR 報錯）
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // 偵測畫面的函式（以 768px 作為手機與電腦的斷點）
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    // 元件掛載時先執行一次
+    handleResize();
+
+    // 監聽視窗大小改變
+    window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }, []);
   
   return (
     <div className="w-screen bg-[#2b2b38] scrollbar-y-auto!">
       <Canvas
         style={{ width: '100vw', height: '100vh' }}
-        camera={{ position: [0, 0, 10], fov: 45 }}
+        // 根據 isMobile 三元運算子動態切換 position
+        camera={{
+          position: isMobile ? [0, 0, 15] : [0, 0, 10],
+          fov: 45,
+        }}
         gl={{ alpha: true }}
       >
         {/* 環境光 */}
@@ -36,7 +55,7 @@ export default function ThreeD() {
         <directionalLight position={[-10, 0, 0]} intensity={1} color="#DACBFF" />
         <directionalLight position={[10, 0, 0]} intensity={1} color="#FFCBE2" />
 
-        {/* 3. 將 Suspense 包裹剛剛建立的 Model 元件 */}
+        {/* 2. 將 Suspense 包裹剛剛建立的 Model 元件 */}
         <Suspense fallback={null}>
           <Model />
         </Suspense>

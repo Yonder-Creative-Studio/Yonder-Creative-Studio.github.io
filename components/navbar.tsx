@@ -2,6 +2,8 @@
 
 import React, { useState, useRef } from "react";
 import { HoveredLink, Menu, MenuItem } from "@/components/ui/navbar-menu";
+import Hamburger from "./hamburger";
+
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import Image from "next/image";
@@ -79,7 +81,7 @@ export function Navbar() {
         <div className="w-full h-full flex items-center justify-center gap-16 mx-auto">
 
           {/* Logo */}
-          <div className="h-full flex items-center justify-start">
+          <div className="h-full w-full flex items-center justify-start">
             <Link href="/">
               <Image
                 src="logo/logo.svg"
@@ -92,7 +94,8 @@ export function Navbar() {
           </div>
           
           {/* navigation items */}
-          <div className="w-full h-full flex items-center justify-end gap-12 mx-auto">
+          <Hamburger />
+          <div className="hidden w-full h-full md:flex items-center justify-end gap-12 mx-auto">
             {navItems.map((nav) => {
               // 4. 精確判斷目前這顆按鈕是否為當前頁面
               const isActivePage = pathname === nav.href;
