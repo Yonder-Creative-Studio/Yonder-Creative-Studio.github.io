@@ -8,13 +8,13 @@ export default function Item() {
 
 
   return (
-     <div className="custom-scrollbar scrollbar-y-auto! scrollbar-x-none!">
-         <div className="relative min-h-screen bg-slate-100 flex flex-col items-center justify-start p-4">
-            <div className="absolute top-1/7 left-0 h-full w-full px-8">
-              <Title title="服務項目" />
+    <div className="custom-scrollbar scrollbar-y-auto! scrollbar-x-none!">
+        <div className="min-h-screen bg-slate-100 flex flex-col items-center justify-start p-4">
+          <div className="pt-16 px-4 h-full w-full">
+            <Title title="服務項目" />
 
-            </div>
-         </div>
+           </div>
+        </div>
          
          <Footer />
      </div>

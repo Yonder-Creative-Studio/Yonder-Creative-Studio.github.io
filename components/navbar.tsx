@@ -5,47 +5,75 @@ import { HoveredLink, Menu, MenuItem } from "@/components/ui/navbar-menu";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation"; // 1. 引入偵測目前網址的 Hook
 
-// 1. 引入 motion 與滾動偵測 Hooks
+// 引入 motion 與滾動偵測 Hooks
 import { motion, useScroll, useMotionValueEvent } from "motion/react";
-
 
 export function Navbar() {
   const [active, setActive] = useState<string | null>(null);
+  const pathname = usePathname(); // 2. 取得當前的路徑
 
-  // 2. 建立偵測滾動狀態
+  // 建立偵測滾動狀態
   const [hidden, setHidden] = useState(false);
   const { scrollY } = useScroll();
   const lastScrollY = useRef(0);
 
-  // 3. 監聽滾動數值的變化
+  // 監聽滾動數值的變化
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = lastScrollY.current;
     const diff = latest - previous;
 
-    // 情境 A：向下滾動，且滾動高度超過 40px 時隱藏
     if (diff > 0 && latest > 40) {
       setHidden(true);
-      setActive(null); // 隱藏 Navbar 時，順便把已經打開的下拉選單關閉，避免懸空
-    } 
-    // 情境 B：向上滾動，且向上滾動的幅度大於 5px 時，重新顯示
-    else if (diff < -5 || latest < 20) {
+      setActive(null); 
+    } else if (diff < -5 || latest < 20) {
       setHidden(false);
     }
-
     lastScrollY.current = latest;
   });
 
+  // 3. 定義導覽列選單資料，方便跑迴圈並精確比對路徑
+  const navItems = [
+    { item: "首頁", href: "/" },
+    { item: "關於我們", href: "/about" },
+    { 
+      item: "服務項目", 
+      href: "/item",
+      children: (
+        <div className="flex flex-col space-y-4 text-sm">
+          <HoveredLink href="https://google.com">Web Development</HoveredLink>
+          <HoveredLink href="https://google.com">Interface Design</HoveredLink>
+          <HoveredLink href="https://google.com">Search Engine Optimization</HoveredLink>
+          <HoveredLink href="https://google.com">Branding</HoveredLink>
+        </div>
+      )
+    },
+    { 
+      item: "作品集", 
+      href: "/portfolio",
+      children: (
+        <div className="flex flex-col space-y-4 text-sm">
+          <HoveredLink href="https://google.com">Hobby</HoveredLink>
+          <HoveredLink href="https://google.com">Individual</HoveredLink>
+          <HoveredLink href="https://google.com">Team</HoveredLink>
+          <HoveredLink href="https://google.com">Enterprise</HoveredLink>
+        </div>
+      )
+    },
+    { item: "成員", href: "/member" },
+    { item: "聯絡我們", href: "/contact" },
+  ];
+
   return (
-    // 4. 將最外層容器改為 motion.div，並套用顯隱動畫
     <motion.div
       variants={{
         visible: { y: 0, opacity: 1 },
-        hidden: { y: -100, opacity: 0 }, // 往上收回 100px 且漸隱
+        hidden: { y: -100, opacity: 0 },
       }}
       animate={hidden ? "hidden" : "visible"}
       transition={{ duration: 0.3, ease: "easeInOut" }}
-      className={cn("fixed top-0 inset-x-0 w-full mx-auto z-50 shadow-xs", hidden && "pointer-events-none")} // 隱藏時禁止互動，避免點擊到隱藏的 Navbar
+      className={cn("fixed top-0 inset-x-0 w-full mx-auto z-50 shadow-xs", hidden && "pointer-events-none")}
     >
       <Menu setActive={setActive}>
         <div className="w-full h-full flex items-center justify-center gap-16 mx-auto">
@@ -65,41 +93,35 @@ export function Navbar() {
           
           {/* navigation items */}
           <div className="w-full h-full flex items-center justify-end gap-12 mx-auto">
-            <MenuItem setActive={setActive} active={null} item="首頁" href="/">
-            </MenuItem>
+            {navItems.map((nav) => {
+              // 4. 精確判斷目前這顆按鈕是否為當前頁面
+              const isActivePage = pathname === nav.href;
 
-            <MenuItem setActive={setActive} active={null} item="關於我們" href="/about">
-            </MenuItem>
-            
-            <MenuItem setActive={setActive} active={active} item="服務項目" href="/item">
-              <div className="flex flex-col space-y-4 text-sm">
-                <HoveredLink href="https://google.com">Web Development</HoveredLink>
-                <HoveredLink href="https://google.com">Interface Design</HoveredLink>
-                <HoveredLink href="https://google.com">Search Engine Optimization</HoveredLink>
-                <HoveredLink href="https://google.com">Branding</HoveredLink>
-              </div>
-            </MenuItem>
+              return (
+                <div key={nav.href} className="relative py-1 flex flex-col items-center">
+                  <MenuItem 
+                    setActive={setActive} 
+                    active={nav.children ? active : null} 
+                    item={nav.item} 
+                    href={nav.href}
+                  >
+                    {nav.children}
+                  </MenuItem>
 
-
-            <MenuItem setActive={setActive} active={active} item="文章" href="/article">
-              <div className="flex flex-col space-y-4 text-sm">
-                <HoveredLink href="https://google.com">Hobby</HoveredLink>
-                <HoveredLink href="https://google.com">Individual</HoveredLink>
-                <HoveredLink href="https://google.com">Team</HoveredLink>
-                <HoveredLink href="https://google.com">Enterprise</HoveredLink>
-              </div>
-            </MenuItem>
-
-            <MenuItem setActive={setActive} active={null} item="成員" href="/member">
-            </MenuItem>
-
-            <MenuItem setActive={setActive} active={null} item="聯絡我們" href="/contact">
-            </MenuItem>
+                  {/* 5. 如果是當前頁面，就渲染會移動的底線 */}
+                  {isActivePage && (
+                    <motion.div
+                      layoutId="active-underline" // 關鍵：Framer motion 會自動做跨元素的流暢平移
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary rounded-full"
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                </div>
+              );
+            })}
           </div>
 
         </div>
-
-
       </Menu>
     </motion.div>
   );

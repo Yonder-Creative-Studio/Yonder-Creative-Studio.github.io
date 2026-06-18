@@ -2,14 +2,22 @@
 
 // import Link from "next/link";
 
+import { motion } from "motion/react";
+
 interface TitleProps {
   title: string;
+  className?: string;
 }
 
-export default function Title({ title }: TitleProps) {
+export default function Title({ title, className }: TitleProps) {
   return (
-    <div className="inline-block bg-[#2B2B38]/2 text-[#2B2B38] px-4 py-1 text-md font-bold mb-4 shadow-sm">
+    <motion.h1 
+      className={`title ${className || ''}`}
+      initial={{ opacity: 0, x: -20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+    >
       {title}
-    </div>
+    </motion.h1>
   );
 }

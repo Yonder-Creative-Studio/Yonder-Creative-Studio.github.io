@@ -129,9 +129,10 @@ export const EncryptedText: React.FC<EncryptedTextProps> = ({
   return (
     <motion.span
       ref={ref}
-      className={cn(className)}
+      className={cn("notranslate", className)}
       aria-label={text}
       role="text"
+      translate="no"
     >
       {text.split("").map((char, index) => {
         const isRevealed = index < revealCount;

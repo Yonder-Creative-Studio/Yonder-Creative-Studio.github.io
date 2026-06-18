@@ -1,7 +1,14 @@
 "use client";
 import ThreeD from "@/components/3d";
 
-import { EncryptedText } from "@/components/ui/encrypted-text";
+// import { EncryptedText } from "@/components/ui/encrypted-text";
+
+import dynamic from "next/dynamic";
+
+const EncryptedText = dynamic(
+  () => import("@/components/ui/encrypted-text").then((mod) => mod.EncryptedText),
+  { ssr: false }
+);
 
 export default function Home() {
 

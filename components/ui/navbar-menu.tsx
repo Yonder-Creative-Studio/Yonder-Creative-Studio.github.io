@@ -32,7 +32,7 @@ export const MenuItem = ({
   const itemText = (
     <motion.p
       transition={{ duration: 0.3 }}
-      className="cursor-pointer text-black hover:opacity-[0.9] dark:text-white"
+      className="cursor-pointer text-primary hover:opacity-[0.9] hover:scale-105 transition-all duration-200"
     >
       {item}
     </motion.p>
@@ -60,7 +60,7 @@ export const MenuItem = ({
               <motion.div
                 transition={transition}
                 layoutId="active" // layoutId ensures smooth animation
-                className="bg-white dark:bg-black backdrop-blur-sm rounded-sm overflow-hidden shadow-sm"
+                className="bg-white backdrop-blur-sm rounded-sm overflow-hidden shadow-sm"
               >
                 <motion.div
                   layout // layout ensures smooth animation
@@ -89,7 +89,7 @@ export const Menu = ({
   return (
     <nav
       onMouseLeave={() => setActive(null)} // resets the state
-      className="relative border border-transparent dark:bg-black dark:border-white/[0.2] bg-white text-sm shadow-input flex justify-center space-x-4 px-12 py-4 gap-8"
+      className="relative bg-white text-primary text-sm flex justify-center px-12 py-4 gap-8"
     >
       {children}
     </nav>
@@ -120,10 +120,10 @@ export const ProductItem = ({
         className="shrink-0 shadow-2xl"
       />
       <div>
-        <h4 className="text-xl font-bold mb-1 text-black dark:text-white">
+        <h4 className="text-xl font-bold mb-1 text-black">
           {title}
         </h4>
-        <p className="text-neutral-700 text-sm max-w-40 dark:text-neutral-300">
+        <p className="text-primary text-sm max-w-40">
           {description}
         </p>
       </div>
@@ -137,7 +137,7 @@ export const HoveredLink = ({ children, href, ...rest }: { children: React.React
   return (
     <Link
       href={href || "#"}
-      className="text-neutral-700 dark:text-neutral-200 hover:text-black "
+      className="text-primary hover:text-black "
       {...rest}
     >
       {children}

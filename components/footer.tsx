@@ -37,7 +37,7 @@ export default function Footer() {
       {/* information */}
       <div className="w-full h-full flex flex-col md:flex-row items-start justify-center gap-12 md:gap-24 mx-auto">
         <div className="w-full md:w-1/2 h-full flex flex-col justify-center items-center md:items-start">
-          <strong className="text-lg mb-2">服務項目</strong>
+          <strong className="text-lg mb-2 font-serif">服務項目</strong>
           <Accordion
             type="single"
             collapsible
@@ -62,14 +62,20 @@ export default function Footer() {
             </strong>
             <span className="mx-2">|</span>
             <strong>
-              <Link href="/about" className="hover:text-white transition-all duration-600">
-                文章
+              <Link href="/portfolio" className="hover:text-white transition-all duration-600">
+                作品集
               </Link>
             </strong>
             <span className="mx-2">|</span>
             <strong>
-              <Link href="/about" className="hover:text-white transition-all duration-600">
-                作品集
+              <Link href="/member" className="hover:text-white transition-all duration-600">
+                成員
+              </Link>
+            </strong>
+            <span className="mx-2">|</span>
+            <strong>
+              <Link href="/contact" className="hover:text-white transition-all duration-600">
+                聯絡我們
               </Link>
             </strong>
           </div>
@@ -78,7 +84,7 @@ export default function Footer() {
 
         <div className="w-full md:w-1/2 h-full flex flex-col justify-center items-center gap-8">
           <div className="w-full flex flex-col gap-4">
-            <strong className="text-lg -mb-1 text-center md:text-left">聯絡資訊</strong>
+            <strong className="text-lg -mb-1 text-center md:text-left font-serif">聯絡資訊</strong>
             <div className="flex items-center gap-4 md:gap-8">
               <MdOutlineMail />
               yondercreative@gmail.com

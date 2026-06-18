@@ -45,10 +45,10 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      lang="en" suppressHydrationWarning
+      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
     >
-      <body className="custom-scrollbar w-full min-h-full flex flex-col scrollbar-y-auto! scrollbar-x-none!">
+      <body className="custom-scrollbar w-full h-full flex flex-col scrollbar-y-auto! scrollbar-x-none!">
         <Navbar />
         {children}
       </body>
