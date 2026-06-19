@@ -19,7 +19,7 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Project {
+model Portfolio {
   id          String   @id @default(uuid())
   title       String
   year        Int
@@ -27,6 +27,4 @@ model Project {
   imgSrc      String
   slug        String   @unique
   content     String   // 詳細文章內容
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
 }
