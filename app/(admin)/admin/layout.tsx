@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/app/globals.css";
 
-import { Navbar } from "@/components/navbar";
+import { SidebarApplication } from "@/components/sidebarApplication";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -47,9 +47,11 @@ export default function RootLayout({
       lang="en" suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} antialiased`}
     >
-      <body className="custom-scrollbar w-full h-full flex flex-col scrollbar-y-auto! scrollbar-x-none!">
-        <Navbar />
-        {children}
+      <body className="custom-scrollbar w-full h-full flex scrollbar-y-auto! scrollbar-x-none!">
+        <div className="flex w-full h-screen">
+          <SidebarApplication />
+          {/* {children} */}
+        </div> 
       </body>
     </html>
   );
