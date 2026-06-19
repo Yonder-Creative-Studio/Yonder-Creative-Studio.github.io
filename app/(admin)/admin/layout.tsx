@@ -18,21 +18,7 @@ export const metadata: Metadata = {
   title: "yonder creative studio",
   description: "遙創工作室，一個專注於網頁設計與開發的創意團隊，致力於為客戶打造獨特且高效的數位體驗。",
   icons: {
-    icon: "logo/logo.svg",
-  },
-  openGraph: {
-    title: "yonder creative studio",
-    description: "遙創工作室，一個專注於網頁設計與開發的創意團隊，致力於為客戶打造獨特且高效的數位體驗。",
-    url: "https://yonder-creative.vercel.app/",
-    siteName: "yonder creative studio",
-    images: [
-      {
-        url: "logo/YC_黑底白字.png",
-        width: 1200,
-        height: 630,
-        alt: "yonder creative studio",
-      }
-    ]
+    icon: "../logo/logo.svg",
   },
 };
 
@@ -47,11 +33,16 @@ export default function RootLayout({
       lang="en" suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} antialiased`}
     >
-      <body className="custom-scrollbar w-full h-full flex scrollbar-y-auto! scrollbar-x-none!">
-        <div className="flex w-full h-screen">
+      <body className="w-full h-screen overflow-hidden flex bg-[#f8f9fa]"> 
+        
+        <div className="shrink-0 h-full">
           <SidebarApplication />
-          {/* {children} */}
-        </div> 
+        </div>
+
+        <main className="flex-1 h-full overflow-y-auto custom-scrollbar">
+          {children}
+        </main>
+
       </body>
     </html>
   );

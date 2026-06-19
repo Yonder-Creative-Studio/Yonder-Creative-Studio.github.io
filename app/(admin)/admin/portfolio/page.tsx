@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Footer from "@/components/footer";
 import Title from "@/components/title";
 import Card from "@/components/card";
 
@@ -75,7 +74,7 @@ export default function Portfolio() {
   const paginatedProjects = filteredProjects.slice(startIndex, endIndex);
 
   return (
-    <div className="custom-scrollbar scrollbar-y-auto! scrollbar-x-none!">
+    <div className="custom-scrollbar scrollbar-y-auto! scrollbar-x-none! w-full">
       <div className="min-h-screen bg-slate-100 flex flex-col items-center justify-start p-4">
         <div className="pt-16 px-4 h-full w-full">
 
@@ -165,7 +164,6 @@ export default function Portfolio() {
 
         </div>
       </div>
-      <Footer />
       
     </div>
   );

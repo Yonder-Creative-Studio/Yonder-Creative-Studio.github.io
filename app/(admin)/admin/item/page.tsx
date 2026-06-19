@@ -1,7 +1,6 @@
 "use client";
 // import { useEffect, useRef, useState } from "react";
 
-import Footer from "@/components/footer";
 import Title from "@/components/title";
 
 export default function Item() {
@@ -16,7 +15,6 @@ export default function Item() {
            </div>
         </div>
          
-         <Footer />
      </div>
    );
 }

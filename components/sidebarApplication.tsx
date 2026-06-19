@@ -32,8 +32,8 @@ export function SidebarApplication() {
       ),
     },
     {
-      label: "Items",
-      href: "/admin/items",
+      label: "Item",
+      href: "/admin/item",
       icon: (
         <IconBriefcase className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
       ),
@@ -46,15 +46,15 @@ export function SidebarApplication() {
       ),
     },
     {
-      label: "Members",
-      href: "/admin/members",
+      label: "Member",
+      href: "/admin/member",
       icon: (
         <IconUsersGroup className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
       ),
     },
     {
-      label: "Contacts",
-      href: "/admin/contacts",
+      label: "Contact",
+      href: "/admin/contact",
       icon: (
         <IconUsers className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
       ),
@@ -76,14 +76,9 @@ export function SidebarApplication() {
   ];
   const [open, setOpen] = useState(false);
   return (
-    <div
-      className={cn(
-        "flex w-10 flex-1 flex-col overflow-hidden rounded-md bg-gray-100 md:flex-row shadow-sm",
-        "h-full",
-      )}
-    >
+    <div className="shadow-sm h-full">
       <Sidebar open={open} setOpen={setOpen} animate={false}>
-        <SidebarBody className="justify-between gap-10 h-full shadow-sm">
+        <SidebarBody className="justify-between gap-10 h-full pl-8">
           <div className="flex flex-1 flex-col overflow-x-hidden overflow-y-auto">
             <div className="mt-8 flex flex-col gap-2">
               {links.map((link, idx) => (

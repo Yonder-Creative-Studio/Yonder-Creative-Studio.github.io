@@ -1,6 +1,5 @@
 "use client";
 
-import Footer from "@/components/footer";
 import Title from "@/components/title";
 import Image from "next/image";
 import { useForm, ValidationError } from "@formspree/react";
@@ -11,7 +10,7 @@ export default function Contact() {
   const [state, handleSubmit] = useForm("mnjykaev");
 
   return (
-    <div className="custom-scrollbar scrollbar-y-auto! scrollbar-x-none!">
+    <div className="custom-scrollbar scrollbar-y-auto! scrollbar-x-none! w-full">
       <div className="min-h-screen bg-slate-100 flex flex-col items-center justify-start p-4">
         <div className="pt-16 px-4 h-full w-full">
           <Title title="聯絡我們" />
@@ -103,7 +102,6 @@ export default function Contact() {
         </div>
       </div>
 
-      <Footer />
     </div>
   );
 }
