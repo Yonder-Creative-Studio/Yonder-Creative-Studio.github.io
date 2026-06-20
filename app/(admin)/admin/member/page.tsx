@@ -1,32 +1,31 @@
-"use client";
+// app/(admin)/admin/member/page.tsx
+import { db } from "@/lib/db";
+import MemberManageClient from "./MemberClient";
 
-import MemberCard from "@/components/memberCard";
-import Title from "@/components/title";
+// 確保每次進來都是最新資料，不使用快取
+export const revalidate = 0;
 
-import { motion } from "motion/react";
+export default async function AdminMemberPage() {
+  // 撈取所有成員，並依 order 排序
+  const members = await db.member.findMany({
+    orderBy: {
+      order: "asc",
+    },
+  });
 
-export default function Member() {
-
-
-   return (
-    <div className="custom-scrollbar scrollbar-y-auto! scrollbar-x-none!">
-      <div className="min-h-screen bg-slate-100 flex flex-col items-center justify-start p-4">
-        <div className="pt-16 px-4 h-full w-full">
-
-                <Title title="成員" />
-                
-                <motion.div 
-                  className="grid grid-cols-1 md:grid-cols-2 gap-4"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, ease: "easeOut" }}
-                >
-                    <MemberCard name="馮妍嘉" role="創辦人" school="國立政治大學" department="廣告學系 / 數位內容與科技學士學位學程" expertise={["Illustrator", "Photoshop", "Lightroom", "Figma", "Blender", "HTML", "CSS", "Javascript", "React.js", "Tailwind CSS", "Next.js", "p5.js", "python", "c++", "c#"]} websiteUrl="https://114-2-web-112405033-hw1.vercel.app/" imgSrc="/images/yenchia.jpg" />
-                    <MemberCard name="馮妍禎" role="創辦人" school="國立臺灣大學" department="工商管理學系科技管理組" expertise={["Illustrator", "Photoshop", "Figma", "HTML", "CSS", "Javascript", "React.js", "Vue.js", "Next.js", "Tailwind CSS", "Node.js (Express)", "p5.js", "python", "c++", "SQL"]} websiteUrl="https://fengyenchen-my-portfolio.vercel.app/" imgSrc="/images/yenchen.jpg" />
-                </motion.div>
-            </div>
+  return (
+    <div className="p-6 max-w-7xl mx-auto">
+      <div className="flex justify-between items-center mb-6">
+        <div>
+          <h1 className="text-2xl font-bold text-gray-900">團隊成員管理後台</h1>
+          <p className="text-sm text-gray-500 mt-1">
+            在此管理前台顯示的成員資料、排序與照片。
+          </p>
         </div>
-
       </div>
-    );
+
+      {/* 載入一列一列的後台管理主元件 */}
+      <MemberManageClient initialMembers={members} />
+    </div>
+  );
 }
