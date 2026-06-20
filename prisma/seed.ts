@@ -4,6 +4,41 @@ const prisma = new PrismaClient();
 
 async function main() {
   await prisma.portfolio.deleteMany(); // 清除舊資料，確保種子資料乾淨
+  await prisma.member.deleteMany(); // 清除舊資料，確保種子資料乾淨
+
+  // 注入成員測試資料
+  await prisma.member.createMany({
+    data: [
+      {
+        name: "馮妍嘉",
+        order: 0,
+        role: "創辦人",
+        school: "國立政治大學",
+        department: "廣告學系 / 數位內容與科技學士學位學程",
+        imgSrc: "/images/yenchia.jpg",
+        websiteUrl: "https://114-2-web-112405033-hw1.vercel.app/",
+        expertise: [
+          "Illustrator", "Photoshop", "Lightroom", "Figma", "Blender", 
+          "HTML", "CSS", "Javascript", "React.js", "Tailwind CSS", 
+          "Next.js", "p5.js", "python", "c++", "c#"
+        ]
+      },
+      {
+        name: "馮妍禎",
+        order: 1,
+        role: "創辦人",
+        school: "國立臺灣大學",
+        department: "工商管理學系科技管理組",
+        imgSrc: "/images/yenchen.jpg",
+        websiteUrl: "https://fengyenchen-my-portfolio.vercel.app/",
+        expertise: [
+          "Illustrator", "Photoshop", "Figma", "HTML", "CSS", 
+          "Javascript", "React.js", "Vue.js", "Next.js", "Tailwind CSS", 
+          "Node.js (Express)", "p5.js", "python", "c++", "SQL"
+        ]
+      }
+    ]
+  });
 
   await prisma.portfolio.createMany({
     data: [
@@ -45,3 +80,7 @@ main()
     await prisma.$disconnect();
     process.exit(1);
   });
+
+
+// 將資料寫進資料庫：npx prisma db seed
+// 接著關掉伺服器並執行：npx prisma generate

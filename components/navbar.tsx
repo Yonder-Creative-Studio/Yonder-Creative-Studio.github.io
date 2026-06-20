@@ -42,26 +42,26 @@ export function Navbar() {
     { 
       item: "服務項目", 
       href: "/item",
-      children: (
-        <div className="flex flex-col space-y-4 text-sm">
-          <HoveredLink href="https://google.com">Web Development</HoveredLink>
-          <HoveredLink href="https://google.com">Interface Design</HoveredLink>
-          <HoveredLink href="https://google.com">Search Engine Optimization</HoveredLink>
-          <HoveredLink href="https://google.com">Branding</HoveredLink>
-        </div>
-      )
+      // children: (
+      //   <div className="flex flex-col space-y-4 text-sm">
+      //     <HoveredLink href="https://google.com">Web Development</HoveredLink>
+      //     <HoveredLink href="https://google.com">Interface Design</HoveredLink>
+      //     <HoveredLink href="https://google.com">Search Engine Optimization</HoveredLink>
+      //     <HoveredLink href="https://google.com">Branding</HoveredLink>
+      //   </div>
+      // )
     },
     { 
       item: "作品集", 
       href: "/portfolio",
-      children: (
-        <div className="flex flex-col space-y-4 text-sm">
-          <HoveredLink href="https://google.com">Hobby</HoveredLink>
-          <HoveredLink href="https://google.com">Individual</HoveredLink>
-          <HoveredLink href="https://google.com">Team</HoveredLink>
-          <HoveredLink href="https://google.com">Enterprise</HoveredLink>
-        </div>
-      )
+      // children: (
+      //   <div className="flex flex-col space-y-4 text-sm">
+      //     <HoveredLink href="https://google.com">Hobby</HoveredLink>
+      //     <HoveredLink href="https://google.com">Individual</HoveredLink>
+      //     <HoveredLink href="https://google.com">Team</HoveredLink>
+      //     <HoveredLink href="https://google.com">Enterprise</HoveredLink>
+      //   </div>
+      // )
     },
     { item: "成員", href: "/member" },
     { item: "聯絡我們", href: "/contact" },

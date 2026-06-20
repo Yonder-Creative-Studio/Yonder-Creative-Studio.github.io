@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 interface CardProps {
-  year?: string;
+  year?: number;
   title?: string;
   description?: string;
   href?: string;
@@ -15,7 +15,7 @@ interface CardProps {
 
 export default function Card({ year, title, description, href, imgSrc, onClick, className = '' }: CardProps) {
   const content = (
-    <div className={`text-primary bg-white shadow-sm hover:-translate-y-1 hover:shadow-md rounded-md transition-all duration-600 p-4 flex flex-col gap-1 justify-center items-center w-full h-full ${className}`}>
+    <div className={`text-primary bg-white shadow-sm hover:-translate-y-1 hover:shadow-md rounded-md transition-all duration-600 p-4 flex flex-col gap-2 justify-center items-center w-full h-full ${className}`}>
       {imgSrc && (
         <div className="w-full aspect-video relative mt-2 overflow-hidden rounded-md">
           <Image 
@@ -27,8 +27,10 @@ export default function Card({ year, title, description, href, imgSrc, onClick, 
           />
         </div>
       )}
-      {year && <div className="font-serif text-xs opacity-80">{year}</div>}
-      {title && <div className="font-serif text-md font-bold">{title}</div>}
+      <div className="w-full flex gap-1 justify-between items-end">
+        {title && <div className="font-serif text-md font-bold">{title}</div>}
+        {year && <div className="font-serif text-xs opacity-80">{year}</div>}
+      </div>
       {description && <p className="text-sm opacity-80">{description}</p>}
     </div>
   );

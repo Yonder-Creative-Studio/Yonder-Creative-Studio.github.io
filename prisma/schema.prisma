@@ -28,3 +28,18 @@ model Portfolio {
   slug        String   @unique
   content     String   // 詳細文章內容
 }
+
+model Member {
+  id          String   @id @default(uuid())
+  order       Int      @default(0) // 用於排序的欄位，預設為 0
+  name        String
+  role        String
+  school      String
+  department  String
+  expertise   String[]
+  websiteUrl  String?
+  imgSrc      String
+}
+
+// 更新新的資料庫：npx prisma migrate dev --name add_[資料庫名稱(全小寫)]
+// 更新原有資料庫欄位：npx prisma migrate dev --name add_[資料庫名稱(全小寫)]_[新增的欄位名稱]

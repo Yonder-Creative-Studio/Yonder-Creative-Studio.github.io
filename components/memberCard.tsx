@@ -5,21 +5,21 @@ import Image from "next/image";
 
 interface MemberProps {
   name?: string;
-  jobTitle?: string;
-  education?: string;
-  major?: string;
-  specialty?: string[];
-  href?: string;
+  role?: string;
+  school?: string;
+  department?: string;
+  expertise?: string[];
+  websiteUrl?: string;
   imgSrc?: string;
 }
 
-export default function Member({ name, jobTitle, education, major, specialty, href, imgSrc}: MemberProps) {
+export default function Member({ name, role, school, department, expertise, websiteUrl, imgSrc}: MemberProps) {
   return(
     
     <div className="w-full h-full text-primary bg-white shadow-sm hover:-translate-y-1 hover:shadow-md rounded-md transition-all duration-600 p-4 flex flex-col md:flex-row gap-1 md:gap-4 justify-center items-center">
       <div className="md:hidden flex justify-start items-end gap-2">
         {name && <div className="font-serif text-lg font-bold">{name} /</div>}
-        {jobTitle && <p className="text-sm opacity-80">{jobTitle}</p>}
+        {role && <p className="text-sm opacity-80">{role}</p>}
       </div>
 
       {imgSrc && (
@@ -39,20 +39,20 @@ export default function Member({ name, jobTitle, education, major, specialty, hr
 
           <div className="hidden md:flex justify-start items-end gap-2 border-b border-primary pb-4">
             {name && <div className="font-serif text-lg font-bold">{name} /</div>}
-            {jobTitle && <p className="text-sm opacity-80">{jobTitle}</p>}
+            {role && <p className="text-sm opacity-80">{role}</p>}
           </div>
           
           <div className="flex flex-col gap-1 md:border border-primary/80 md:p-2 rounded-sm">
-            {education && <p className="text-xs opacity-80">{education}</p>}
-            {major && <p className="text-xs">{major}</p>}
+            {school && <p className="text-xs opacity-80">{school}</p>}
+            {department && <p className="text-xs">{department}</p>}
           </div>
 
-          {specialty && (
+          {expertise && (
             <div className="flex flex-wrap gap-1 text-xs">
               <p>專長</p>
               {/* 傳入陣列 */}
               <div className="flex flex-wrap gap-2 text-xs">
-                {(Array.isArray(specialty) ? specialty : [specialty]).map((item, index) => (
+                {(Array.isArray(expertise) ? expertise : [expertise]).map((item, index) => (
                   <span 
                     key={index} 
                     className="px-3 py-1 bg-white/60 backdrop-blur-xs text-primary rounded-sm border border-secondary/50 shadow-xs"
@@ -64,8 +64,8 @@ export default function Member({ name, jobTitle, education, major, specialty, hr
             </div>
           )}
 
-          {href && (
-            <Link href={href} target="_blank" className="text-xs text-primary/80 mt-2 inline-block self-end">
+          {websiteUrl && (
+            <Link href={websiteUrl} target="_blank" className="text-xs text-primary/80 mt-2 inline-block self-end">
               <div className="bg-primary/10 hover:bg-primary/20 transition-colors duration-300 px-2 py-1 rounded-sm">
                 個人網頁
               </div>

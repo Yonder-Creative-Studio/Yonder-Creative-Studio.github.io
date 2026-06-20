@@ -17,6 +17,7 @@ import {
 interface Project {
   id: string;
   title: string;
+  year: number;
   description: string;
   imgSrc: string;
   slug: string;
@@ -80,6 +81,7 @@ export default function PortfolioClient({ initialProjects }: { initialProjects: 
               key={project.id}
               title={project.title}
               description={project.description}
+              year={project.year}
               imgSrc={project.imgSrc}
               href={`/portfolio/${project.slug}`} // 👈 點擊跳轉到對應文章詳細頁
             />
