@@ -28,7 +28,7 @@ export function Navbar() {
 
     if (diff > 0 && latest > 40) {
       setHidden(true);
-      setActive(null); 
+      setActive(null);
     } else if (diff < -5 || latest < 20) {
       setHidden(false);
     }
@@ -39,8 +39,8 @@ export function Navbar() {
   const navItems = [
     { item: "首頁", href: "/" },
     { item: "關於我們", href: "/about" },
-    { 
-      item: "服務項目", 
+    {
+      item: "服務項目",
       href: "/item",
       // children: (
       //   <div className="flex flex-col space-y-4 text-sm">
@@ -51,8 +51,8 @@ export function Navbar() {
       //   </div>
       // )
     },
-    { 
-      item: "作品集", 
+    {
+      item: "作品集",
       href: "/portfolio",
       // children: (
       //   <div className="flex flex-col space-y-4 text-sm">
@@ -92,7 +92,7 @@ export function Navbar() {
               />
             </Link>
           </div>
-          
+
           {/* navigation items */}
           <Hamburger />
           <div className="hidden w-full h-full md:flex items-center justify-end gap-12 mx-auto">
@@ -102,13 +102,15 @@ export function Navbar() {
 
               return (
                 <div key={nav.href} className="relative py-1 flex flex-col items-center">
-                  <MenuItem 
-                    setActive={setActive} 
-                    active={nav.children ? active : null} 
-                    item={nav.item} 
+                  <MenuItem
+                    setActive={setActive}
+                    // 💡 修正 1：直接改成傳入 active，或者如果你以後想留著擴充，寫成 (nav as any).children
+                    active={active}
+                    item={nav.item}
                     href={nav.href}
                   >
-                    {nav.children}
+                    {/* 💡 修正 2：如果未來可能補上選單，可用 (nav as any).children，若不打算用可以直接放空或維持不變 */}
+                    {(nav as any).children}
                   </MenuItem>
 
                   {/* 5. 如果是當前頁面，就渲染會移動的底線 */}

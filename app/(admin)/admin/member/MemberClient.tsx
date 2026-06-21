@@ -1,4 +1,3 @@
-// app/(admin)/admin/member/MemberManageClient.tsx
 "use client";
 
 import React, { useState, useTransition } from "react";
@@ -10,8 +9,8 @@ interface Member {
   role: string;
   school: string;
   department: string;
-  expertise: any; // 💡 修正：相容 Prisma 的 JsonValue
-  websiteUrl: string | null; // 💡 修正：允許 null，避免與資料庫型別打架
+  expertise: any; // 相容 Prisma 的 JsonValue
+  websiteUrl: string | null; // 允許 null，避免與資料庫型別打架
   imgSrc: string;
   order: number;
 }
@@ -45,7 +44,7 @@ export default function MemberManageClient({ initialMembers }: { initialMembers:
   const handleOpenEdit = (member: Member) => {
     setEditingMember(member);
 
-    // 💡 修正：防禦性地將專長陣列轉換回以逗號分隔的乾淨字串，讓後台 input 更好閱讀
+    // 防禦性地將專長陣列轉換回以逗號分隔的乾淨字串，讓後台 input 更好閱讀
     let expertiseString = "";
     if (member.expertise) {
       if (Array.isArray(member.expertise)) {
@@ -67,7 +66,7 @@ export default function MemberManageClient({ initialMembers }: { initialMembers:
       department: member.department,
       websiteUrl: member.websiteUrl || "",
       order: String(member.order),
-      expertise: expertiseString, // 💡 帶入漂亮乾淨的字串，徹底解決語法崩潰錯誤
+      expertise: expertiseString, // 帶入漂亮乾淨的字串，徹底解決語法崩潰錯誤
     });
     setSelectedFile(null);
     setIsModalOpen(true);
@@ -86,7 +85,7 @@ export default function MemberManageClient({ initialMembers }: { initialMembers:
     data.append("websiteUrl", formData.websiteUrl);
     data.append("order", formData.order);
     
-    // 💡 修正：更安全的專長解析防呆，不管使用者輸入什麼，存進資料庫前一律變回標準 JSON 陣列
+    // 不管使用者輸入什麼，存進資料庫前一律變回標準 JSON 陣列
     if (formData.expertise.trim()) {
       if (formData.expertise.trim().startsWith("[")) {
         try {

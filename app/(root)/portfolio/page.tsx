@@ -17,7 +17,7 @@ export default async function Portfolio() {
   return (
     <div className="custom-scrollbar scrollbar-y-auto! scrollbar-x-none!">
       <div className="min-h-screen bg-slate-100 flex flex-col items-center justify-start p-4">
-        <div className="pt-16 ps-4 h-full w-full px-8 max-w-6xl mx-auto">
+        <div className="pt-16 px-4 h-full w-full max-w-6xl mx-auto">
 
           <Title title="作品集" className="mb-4!" />
 

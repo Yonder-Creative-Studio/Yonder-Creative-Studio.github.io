@@ -1,4 +1,3 @@
-// app/(admin)/admin/member/page.tsx
 import { db } from "@/lib/db";
 import MemberManageClient from "./MemberClient";
 

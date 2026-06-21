@@ -28,10 +28,9 @@ export default function MemberClient({ members }: MemberClientProps) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      {/* 3. 使用 .map() 迴圈動態渲染每一個成員卡片 */}
       {members.map((member) => (
         <MemberCard
-          key={member.id} // 👈 必須提供唯一的 key
+          key={member.id}
           name={member.name}
           role={member.role} 
           school={member.school}

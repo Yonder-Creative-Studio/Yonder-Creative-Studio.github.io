@@ -116,7 +116,7 @@ export default function Portfolio() {
                   description={project.description} 
                   imgSrc={project.imgSrc} 
                   href={project.href} 
-                  year={project.year}
+                  year={Number(project.year)}
                 />
               ))}
             </motion.div>

@@ -1,4 +1,3 @@
-// app/(admin)/admin/member/actions.ts
 'use server';
 
 import { db } from "@/lib/db";
@@ -17,7 +16,7 @@ async function uploadToSupabase(file: File, memberId: string) {
   const bytes = await file.arrayBuffer();
   const buffer = Buffer.from(bytes);
   
-  // 核心修改：將檔名組合為 memberId-原檔名
+  // 將檔名組合為 memberId-原檔名
   const storagePath = `${FOLDER_PATH}/${memberId}-${file.name}`;
 
   // 執行上傳
