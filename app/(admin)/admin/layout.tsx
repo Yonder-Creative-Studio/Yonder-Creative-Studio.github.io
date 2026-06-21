@@ -3,6 +3,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/app/globals.css";
 import { SidebarApplication } from "@/components/sidebarApplication";
+import { VerifyAdminKey } from "./action"; // 確保這裡與下方呼叫的大小寫完全一致
+
 import { useEffect, useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
@@ -30,27 +32,34 @@ function AdminValidationGuard({ children }: { children: React.ReactNode }) {
     link.href = 'https://pwrlohlzeuaikmxfohjf.supabase.co/storage/v1/object/public/YCwebsite/logo/favicon.png';
     document.getElementsByTagName('head')[0].appendChild(link);
 
-    // 取得網址列上的 ?key=...
-    const secretKey = searchParams.get('key');
-
-    // 1. 如果帶有正確密鑰
-    if (secretKey === process.env.ADMIN_KEY) {
-      sessionStorage.setItem('isAdminUnlocked', 'true');
-      setIsVerified(true);
+    // 將驗證邏輯完整包裝與正確閉合
+    async function verify() {
+      const secretKey = searchParams.get('key');
       
-      // 悄悄把網址列的 ?key=... 拿掉，保持網址列乾淨
-      router.replace('/admin');
-      return;
+      // 1. 如果網址帶有密鑰，優先走 Server Action 後端驗證
+      if (secretKey) {
+        const isValid = await VerifyAdminKey(secretKey);
+        
+        if (isValid) {
+          sessionStorage.setItem('isAdminUnlocked', 'true');
+          setIsVerified(true);
+          router.replace('/admin');
+          return; // 驗證成功，中斷往下執行
+        }
+      }
+
+      // 2. 網址沒帶密鑰，或密鑰無效，檢查瀏覽器之前有沒有成功解鎖過
+      const isUnlocked = sessionStorage.getItem('isAdminUnlocked');
+      if (isUnlocked === 'true') {
+        setIsVerified(true);
+      } else {
+        // 沒通過驗證，直接踢回前台首頁 (/)
+        router.replace('/');
+      }
     }
 
-    // 2. 沒帶密鑰，檢查瀏覽器之前有沒有成功解鎖過
-    const isUnlocked = sessionStorage.getItem('isAdminUnlocked');
-    if (isUnlocked === 'true') {
-      setIsVerified(true);
-    } else {
-      // 沒通過驗證，直接踢回前台首頁 (/)
-      router.replace('/');
-    }
+    verify(); // 🎯 最關鍵：一定要呼叫它，這個異步驗證機制才會真正啟動！
+
   }, [searchParams, router]);
 
   // 驗證通過前先回傳 null，避免後台畫面閃現
