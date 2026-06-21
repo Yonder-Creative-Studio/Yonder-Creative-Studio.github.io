@@ -34,7 +34,7 @@ function AdminValidationGuard({ children }: { children: React.ReactNode }) {
     const secretKey = searchParams.get('key');
 
     // 1. 如果帶有正確密鑰
-    if (secretKey === process.env.NEXT_PUBLIC_ADMIN_KEY) {
+    if (secretKey === process.env.ADMIN_KEY) {
       sessionStorage.setItem('isAdminUnlocked', 'true');
       setIsVerified(true);
       
