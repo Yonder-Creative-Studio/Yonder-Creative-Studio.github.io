@@ -2,6 +2,7 @@
 
 import React, { useState, useTransition } from "react";
 import { createPortfolio, deletePortfolio } from "./actions"; // 確保你的 actions 檔路徑正確
+import Image from "next/image";
 
 interface Portfolio {
   id: string;
@@ -55,9 +56,7 @@ export default function PortfolioManageClient({ initialPortfolios }: { initialPo
     data.append("content", formData.content);
 
     startTransition(async () => {
-      // 這裡直接借用你原本寫在 form action 的 createPortfolio 
-      // 如果你有個別獨立的 update 也可以在這裡做分流，或是統一交由後端處理
-      const res = await createPortfolio(data); 
+      await createPortfolio(data); 
       
       // 假設你的 server action 有回傳標準格式，配合你的彈窗行為
       setIsModalOpen(false);
@@ -107,7 +106,9 @@ export default function PortfolioManageClient({ initialPortfolios }: { initialPo
                 {/* 預覽圖 */}
                 <td className="p-4">
                   <div className="w-10 h-10 rounded-lg overflow-hidden border border-gray-200 bg-gray-50 flex items-center justify-center">
-                    <img
+                    <Image
+                      width={40}
+                      height={40}
                       src={portfolio.imgSrc || "/logo/favicon.png"}
                       alt={portfolio.title}
                       className="w-full h-full object-cover"
