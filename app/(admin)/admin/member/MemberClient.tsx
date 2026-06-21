@@ -191,7 +191,7 @@ export default function MemberManageClient({ initialMembers }: { initialMembers:
                       height={40}
                       src={member.imgSrc || "/images/default-avatar.jpg"}
                       alt={member.name}
-                      className="w-10 h-10 rounded-full object-cover border bg-gray-100"
+                      className="w-10 h-10 rounded-lg object-cover border bg-gray-100"
                     />
                   </td>
                   {/* 姓名職稱 */}

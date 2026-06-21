@@ -1,5 +1,6 @@
 import { db } from "@/lib/db";
 import MemberManageClient from "./MemberClient";
+import Link from "next/dist/client/link";
 
 // 確保每次進來都是最新資料，不使用快取
 export const revalidate = 0;
@@ -21,6 +22,9 @@ export default async function AdminMemberPage() {
             在此管理前台顯示的成員資料、排序與照片。
           </p>
         </div>
+        <Link href="/member" target="_blank" className="text-sm text-blue-600">
+          查看前台作品集 ➔
+        </Link>
       </div>
 
       {/* 載入一列一列的後台管理主元件 */}

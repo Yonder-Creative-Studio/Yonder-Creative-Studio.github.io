@@ -10,6 +10,7 @@ interface Portfolio {
   slug: string;
   imgSrc: string | null;
   description: string | null;
+  content: string | null;
   year: number;
 }
 
@@ -38,6 +39,20 @@ export default function PortfolioManageClient({ initialPortfolios }: { initialPo
       imgSrc: "",
       description: "",
       content: "",
+    });
+    setIsModalOpen(true);
+  };
+
+  // 開啟「編輯」彈窗（將原有作品資料帶入）
+  const handleOpenEdit = (portfolio: Portfolio) => {
+    setEditingPortfolio(portfolio);
+    setFormData({
+      title: portfolio.title,
+      year: String(portfolio.year),
+      slug: portfolio.slug,
+      imgSrc: portfolio.imgSrc || "",
+      description: portfolio.description || "",
+      content: portfolio.content || "",
     });
     setIsModalOpen(true);
   };
@@ -100,7 +115,7 @@ export default function PortfolioManageClient({ initialPortfolios }: { initialPo
             {initialPortfolios.map((portfolio) => (
               <tr key={portfolio.id} className="hover:bg-gray-50 transition">
                 {/* 年份 */}
-                <td className="p-4 text-center font-mono font-medium text-blue-600 bg-blue-50/30">
+                <td className="p-4 text-center font-mono font-medium text-gray-700">
                   {portfolio.year}
                 </td>
                 {/* 預覽圖 */}
@@ -127,6 +142,12 @@ export default function PortfolioManageClient({ initialPortfolios }: { initialPo
                 {/* 操作按鈕 */}
                 <td className="p-4 text-center">
                   <div className="flex justify-center gap-2">
+                    <button
+                      onClick={() => handleOpenEdit(portfolio)}
+                      className="px-2 py-1 text-xs text-blue-600 bg-blue-50 rounded hover:bg-blue-100 transition"
+                    >
+                      編輯
+                    </button>
                     <button
                       onClick={() => handleDelete(portfolio.id, portfolio.slug)}
                       className="px-2 py-1 text-xs text-red-600 bg-red-50 rounded hover:bg-red-100 transition"

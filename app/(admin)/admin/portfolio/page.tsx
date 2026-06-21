@@ -9,9 +9,6 @@ export const revalidate = 0;
 export default async function PortfolioAdminPage() {
   // 撈取所有作品
   const portfolios = await db.portfolio.findMany({
-    omit: {
-      content: true,
-    },
     orderBy: {
       year: "desc",
     },
@@ -26,7 +23,7 @@ export default async function PortfolioAdminPage() {
             在此管理前台顯示的作品專案、年份與詳細文章介紹。
           </p>
         </div>
-        <Link href="/portfolio" target="_blank" className="text-sm text-blue-600 hover:underline">
+        <Link href="/portfolio" target="_blank" className="text-sm text-blue-600">
           查看前台作品集 ➔
         </Link>
       </div>
