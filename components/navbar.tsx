@@ -39,30 +39,8 @@ export function Navbar() {
   const navItems = [
     { item: "首頁", href: "/" },
     { item: "關於我們", href: "/about" },
-    {
-      item: "服務項目",
-      href: "/item",
-      // children: (
-      //   <div className="flex flex-col space-y-4 text-sm">
-      //     <HoveredLink href="https://google.com">Web Development</HoveredLink>
-      //     <HoveredLink href="https://google.com">Interface Design</HoveredLink>
-      //     <HoveredLink href="https://google.com">Search Engine Optimization</HoveredLink>
-      //     <HoveredLink href="https://google.com">Branding</HoveredLink>
-      //   </div>
-      // )
-    },
-    {
-      item: "作品集",
-      href: "/portfolio",
-      // children: (
-      //   <div className="flex flex-col space-y-4 text-sm">
-      //     <HoveredLink href="https://google.com">Hobby</HoveredLink>
-      //     <HoveredLink href="https://google.com">Individual</HoveredLink>
-      //     <HoveredLink href="https://google.com">Team</HoveredLink>
-      //     <HoveredLink href="https://google.com">Enterprise</HoveredLink>
-      //   </div>
-      // )
-    },
+    { item: "服務項目", href: "/item" },
+    { item: "作品集", href: "/portfolio" },
     { item: "成員", href: "/member" },
     { item: "聯絡我們", href: "/contact" },
   ];
@@ -109,8 +87,6 @@ export function Navbar() {
                     item={nav.item}
                     href={nav.href}
                   >
-                    {/* 💡 修正 2：如果未來可能補上選單，可用 (nav as any).children，若不打算用可以直接放空或維持不變 */}
-                    {(nav as any).children}
                   </MenuItem>
 
                   {/* 5. 如果是當前頁面，就渲染會移動的底線 */}

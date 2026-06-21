@@ -19,13 +19,11 @@ export const MenuItem = ({
   setActive,
   active,
   item,
-  children,
   href,
 }: {
   setActive: (item: string) => void;
   active: string | null;
   item: string;
-  children?: React.ReactNode;
   href?: string;
 }) => {
   // 將文字與動畫樣式抽出來，方便共用
@@ -62,12 +60,6 @@ export const MenuItem = ({
                 layoutId="active" // layoutId ensures smooth animation
                 className="bg-white backdrop-blur-sm rounded-sm overflow-hidden shadow-sm"
               >
-                <motion.div
-                  layout // layout ensures smooth animation
-                  className="w-max h-full p-4"
-                >
-                  {children}
-                </motion.div>
               </motion.div>
             </div>
           )}
@@ -95,42 +87,6 @@ export const Menu = ({
     </nav>
   );
 };
-
-
-
-export const ProductItem = ({
-  title,
-  description,
-  href,
-  src,
-}: {
-  title: string;
-  description: string;
-  href: string;
-  src: string;
-}) => {
-  return (
-    <Link href={href} className="flex space-x-2">
-      <Image
-        src={src}
-        width={140}
-        height={70}
-        alt={title}
-        loading="eager"
-        className="shrink-0 shadow-2xl"
-      />
-      <div>
-        <h4 className="text-xl font-bold mb-1 text-black">
-          {title}
-        </h4>
-        <p className="text-primary text-sm max-w-40">
-          {description}
-        </p>
-      </div>
-    </Link>
-  );
-};
-
 
 
 export const HoveredLink = ({ children, href, ...rest }: { children: React.ReactNode; href: string }) => {
