@@ -3,7 +3,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/app/globals.css";
 import { SidebarApplication } from "@/components/sidebarApplication";
-import { VerifyAdminKey } from "./action"; // 確保這裡與下方呼叫的大小寫完全一致
+import { VerifyAdminKey } from "./actions"; // 確保這裡與下方呼叫的大小寫完全一致
 
 import { useEffect, useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';

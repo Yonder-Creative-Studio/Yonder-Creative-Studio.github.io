@@ -2,6 +2,7 @@
 
 import React, { useState, useTransition } from "react";
 import { createMemberAction, updateMemberAction, deleteMemberAction } from "./actions";
+import Image from "next/image";
 
 interface Member {
   id: string;
@@ -185,7 +186,9 @@ export default function MemberManageClient({ initialMembers }: { initialMembers:
                   <td className="p-4 text-center font-mono text-gray-500">{member.order}</td>
                   {/* 照片 */}
                   <td className="p-4">
-                    <img
+                    <Image
+                      width={40}
+                      height={40}
                       src={member.imgSrc || "/images/default-avatar.jpg"}
                       alt={member.name}
                       className="w-10 h-10 rounded-full object-cover border bg-gray-100"
